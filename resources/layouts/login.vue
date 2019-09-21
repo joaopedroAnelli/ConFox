@@ -1,13 +1,30 @@
+<!--suppress HtmlUnknownTarget -->
 <template lang="pug">
   .hero.is-primary.is-fullheight
-    .hero-body
+    .hero-body.is-danger
       .container
-        .card
-          .header
-            h1 Login
-          .body
-            b-field(label="E-mail")
-              b-input
+        .columns.is-mobile.is-centered
+          .column.is-half
+            .columns.is-centered
+              .column.is-half
+                img.logo(src="/icons/fox.png")
+            .card
+              .card-header
+                p.card-header-title Login
+              .card-content
+                .content
+                  b-field(label="E-mail")
+                    b-input
+                  b-field(label="Senha")
+                    b-input
+
+                  .columns
+                    .column
+                    .column
+                    .column.level
+                      .level-right
+                        b-button.is-medium(type="is-success") Login
+
 
 
 </template>
@@ -26,16 +43,10 @@
 <style lang="stylus" scoped>
 
   .card
-    padding 2em
-    border none
-    border-radius 5px
-    width 500px
-    max-width 80vw
-
-    .header
-      border-bottom 1px solid gray
-      margin-bottom 1em
-      h1
-        font-size 1.5em
+    border-radius 10px
+  .logo
+    width 100px
+  p
+    font-size 1.5em
 
 </style>
