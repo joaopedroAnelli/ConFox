@@ -1,13 +1,16 @@
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
+$animationDuration: 0.3s; // specify animation duration. Default value: 1s
+@import "~vue2-animate/src/sass/vue2-animate";
 
 $orange: #ff7d12;
 
 // Set your colors
 $primary: $orange;
 $primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
+$twitter: #4099ff;
 $twitter-invert: findColorInvert($twitter);
+$light-grey: #e5e5e5;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -22,6 +25,8 @@ $colors: (
   "danger": ($danger, $danger-invert),
   "twitter": ($twitter, $twitter-invert)
 );
+
+//$background: map-get($colors, "white");
 
 // Links
 $link: $primary;

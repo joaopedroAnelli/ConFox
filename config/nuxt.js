@@ -8,7 +8,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Confox | App de conexão dos focus.',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -32,6 +32,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/global-components'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -44,6 +45,12 @@ module.exports = {
   modules: [
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
+
+
+    '@nuxtjs/axios',
+
+
+    '@nuxtjs/style-resources'
   ],
   /*
   ** Build configuration
@@ -54,5 +61,11 @@ module.exports = {
     */
     extend (config, ctx) {
     }
+  },
+
+  styleResources: {
+    scss: [
+      '@/assets/sass/settings.scss',
+    ]
   }
 }
