@@ -26,7 +26,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '@/assets/sass/settings'
+    '@/assets/sass/settings',
+    'vue-multiselect/dist/vue-multiselect.min.css'
   ],
   /*
   ** Plugins to load before mounting the App

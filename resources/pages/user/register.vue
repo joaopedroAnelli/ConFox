@@ -20,32 +20,49 @@
                   b-field(label="Senha")
                     b-input(type="password" v-model="user.password")
                   b-field(label="Confirme a senha")
-                    b-input(v-model="user.passwordConfirmation")
+                    b-input(type="password" v-model="user.passwordConfirmation")
 
                   .columns
                     .column
                     .column
                     .column.level
                       .level-right
-                        b-button.is-medium.register(type="is-success" @click="$router.push('/user/register')") Registar-se
-                        b-button.is-medium(type="is-success" @click="$store.dispatch('user/login', user)") Login
+                        b-button.is-medium(type="is-success" @click="register") Registar-se
 
 </template>
 
 <script>
-    export default {
-        name: "register",
-        layout: 'blank',
+  export default {
+    name: "register",
+    layout: 'blank',
 
-        data() {
-            return {
-                user: {
-                    email: '',
-                    password: ''
-                }
-            }
+    data() {
+      return {
+        user: {
+          name: '',
+          email: '',
+          password: ''
         }
+      }
+    },
+
+    methods: {
+      register() {
+        this.$nuxt.$loading.start();
+        this.$axios.post('/api/user', this.user)
+          .then(r => {
+            this.$nuxt.$loading.finish();
+            this.$buefy.dialog.alert({
+              title: 'Muito bem!',
+              message: 'Usuário cadastrado com sucesso!',
+              type: 'is-success',
+              confirmText: 'Fazer login',
+              onConfirm: () => this.$router.push('/user/login')
+            })
+          })
+      }
     }
+  }
 </script>
 
 <style lang="stylus" scoped>

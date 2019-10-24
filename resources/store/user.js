@@ -18,6 +18,7 @@ export const mutations = {
 export const actions = {
 
   login({ commit }, postData){
+    this.$axios.post('/api/login', {email: 'joaopedroanelli99@gmail.com', password: '123mudar'});
     commit('set', postData.email);
     this.$router.push('/')
   },

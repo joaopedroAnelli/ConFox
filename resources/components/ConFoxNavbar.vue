@@ -7,15 +7,13 @@
         h1 ConFox
 
     template(slot="start")
-      b-navbar-item(tag="nuxt-link" to="/") Grupos
-      b-navbar-item(tag="nuxt-link" to="/") Chats
-      b-navbar-item(tag="nuxt-link" to="/") Agendamentos
-
-    template(slot="start")
-      b-navbar-item(tag="item")
+      b-navbar-item(tag="nuxt-link" :to="'/groups'") Grupos
+      b-navbar-item(tag="nuxt-link" :to="'/chats'") Chats
+      b-navbar-item(tag="nuxt-link" :to="'/'") Agendamentos
+      b-navbar-item(tag="nuxt-link" :to="'/interests'") Interesses
 
     template(slot="end")
-      b-navbar-item(tag="item")
+      b-navbar-item
         .buttons
           a.button.is-light Sair
 

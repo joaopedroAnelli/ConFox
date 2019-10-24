@@ -1,0 +1,15 @@
+version: "3"
+services:
+
+  redis:
+    image: redis:5.0.5
+    ports:
+      - "6379:6379"
+
+  neo4j:
+    image: neo4j:latest
+    ports:
+      - "7687:7687"
+      - "7474:7474"
+    volumes:
+      - $HOME/neo4j/data:/data

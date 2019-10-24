@@ -3,7 +3,7 @@
     .hero-body.is-danger
       .container
         .columns.is-mobile.is-centered
-          .column.is-half
+          .column.is-half-desktop
             .columns.is-centered
               .column.is-half.logo-container
                 img.logo(src="/icons/fox.png")

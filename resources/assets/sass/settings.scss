@@ -36,3 +36,10 @@ $link-focus-border: $primary;
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+//navbar
+$navbar: 3.25em;
+
+@media (min-width: $desktop) {
+  $navbar: 4em;
+}

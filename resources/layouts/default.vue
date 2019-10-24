@@ -30,20 +30,22 @@ export default {
   .default-root {
     main {
       background-color: $white;
-      min-height: calc(100vh - 3.25em);
+      height: calc(100vh - #{$navbar});
       box-shadow: 0px 0px 20px #bdbdbd;
       width: 100vw;
       overflow-y: scroll;
 
       @media (min-width: $tablet) and (max-width: $desktop){
         width: 80vw;
-        min-height: calc(100vh - 5em);
+        height: calc(100vh - (#{$navbar} + 1.75em));
         border-radius: 5px;
       }
 
       @media (min-width: $desktop) {
         width: 80vw;
-        min-height: calc(100vh - 10em);
+        position: relative;
+        top: 1em;
+        height: calc(100vh - (#{$navbar} + 4em));
         border-radius: 5px;
       }
     }

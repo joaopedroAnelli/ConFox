@@ -13,6 +13,13 @@
 |
 */
 
-const Route = use('Route')
+const Route = use('Route');
 
-Route.any('*', 'NuxtController.render')
+Route
+  .post('/api/user', 'UserController.create');
+
+Route
+  .get('/api/users/:id', 'UserController.show')
+  .middleware('auth');
+
+Route.any('*', 'NuxtController.render');
