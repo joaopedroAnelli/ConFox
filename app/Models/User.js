@@ -1,16 +1,9 @@
-'use strict'
-const Model = use('App/Models/Model');
-
-class User extends Model {
-  constructor(object) {
-    super();
-    this.$label = 'User';
-    this.$fillable = [
-      'name',
-      'email',
-      'password'
-    ];
-  }
+module.exports = {
+  name: 'name',
+  email:  {
+    type: 'email',
+    primary: true,
+    unique: 'true',
+  },
+  password: 'string',
 }
-
-module.exports = User;

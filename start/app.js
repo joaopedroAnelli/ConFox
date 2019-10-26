@@ -23,7 +23,8 @@ const providers = [
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/redis/providers/RedisProvider',
   path.join(__dirname, '..', 'providers', 'NuxtProvider'),
-  path.join(__dirname, '..', 'providers', 'Neo4jProvider')
+  path.join(__dirname, '..', 'providers', 'Neo4jProvider'),
+  path.join(__dirname, '..', 'providers', 'NeodeProvider'),
 ]
 
 /*

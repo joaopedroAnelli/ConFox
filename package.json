@@ -30,6 +30,7 @@
     "express-session": "^1.17.0",
     "global": "^4.4.0",
     "neo4j-driver": "^1.7.6",
+    "neode": "^0.3.6",
     "nuxt": "^2.0.0",
     "nuxt-buefy": "^0.3.2",
     "vee-validate": "^3.0.11",

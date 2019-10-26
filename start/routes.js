@@ -19,6 +19,9 @@ Route
   .post('/api/user', 'UserController.create');
 
 Route
+  .post('/api/user/auth', 'UserController.login');
+
+Route
   .get('/api/users/:id', 'UserController.show')
   .middleware('auth');
 

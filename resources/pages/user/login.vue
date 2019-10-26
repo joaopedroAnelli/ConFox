@@ -1,4 +1,4 @@
-<template lang="pug">
+'<template lang="pug">
   .hero.is-primary.is-fullheight
     .hero-body.is-danger
       .container
@@ -24,24 +24,49 @@
                     .column.level
                       .level-right
                         b-button.is-medium.register(type="is-success" @click="$router.push('/user/register')") Registrar-se
-                        b-button.is-medium(type="is-success" @click="$store.dispatch('user/login', user)") Login
+                        b-button.is-medium(type="is-success" @click="login") Login
 
 </template>
 
 <script>
-    export default {
-        name: "login",
-        layout: 'blank',
+  export default {
+    name: "login",
+    layout: 'blank',
 
-        data() {
-            return {
-                user: {
-                    email: '',
-                    password: ''
-                }
-            }
+    data() {
+      return {
+        user: {
+          email: '',
+          password: ''
         }
+      }
+    },
+
+    methods: {
+      login() {
+        this.$nuxt.$loading.start();
+
+        this.$axios
+          .post('/api/user/auth', this.user)
+          .then(r => {
+            this.$nuxt.$loading.finish();
+            // this.$router.push('/groups')
+          }, err => {
+            this.$nuxt.$loading.finish();
+            this.$buefy.dialog.alert({
+              title: 'Ops!',
+              message: 'Usuário inválido',
+              type: 'is-danger',
+              confirmText: 'Tentar novamente',
+            })
+          })
+          .catch(err => {
+            this.$nuxt.$loading.finish();
+            console.log(err)
+          })
+      }
     }
+  }
 </script>
 
 <style lang="stylus" scoped>
@@ -73,3 +98,4 @@
     font-size 1.5em
 
 </style>
+'
