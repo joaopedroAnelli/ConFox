@@ -33,7 +33,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/global-components'
+    '~/plugins/global-components',
+    '~/plugins/vee-validate',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -57,6 +58,12 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    // Add exception
+    transpile: [
+      "vee-validate/dist/rules"
+    ],
+
+
     /*
     ** You can extend webpack config here
     */

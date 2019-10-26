@@ -13,21 +13,25 @@
                 p.card-header-title Registro de Usuário
               .card-content
                 .content
-                  b-field(label="Nome")
-                    b-input(v-model="user.name")
-                  b-field(label="E-mail")
-                    b-input(v-model="user.email")
-                  b-field(label="Senha")
-                    b-input(type="password" v-model="user.password")
-                  b-field(label="Confirme a senha")
-                    b-input(type="password" v-model="user.passwordConfirmation")
+                  validation-observer(v-slot="{ invalid }" slim)
+                    validation-provider(rules="required" name="name" v-slot="{ errors }" slim)
+                      b-field(label="Nome" :type="{'is-danger': errors.length}" :message="errors[0]")
+                        b-input(v-model="user.name")
+                    validation-provider(rules="required|email" name="email" v-slot="{ errors }" slim)
+                      b-field(label="E-mail" :type="{'is-danger': errors.length}" :message="errors[0]")
+                        b-input(v-model="user.email")
+                    validation-provider(rules="required|password:confirmation" name="password" v-slot="{ errors }" slim)
+                      b-field(label="Senha" :type="{'is-danger': errors.length}" :message="errors[0]")
+                        b-input(type="password" v-model="user.password")
+                    validation-provider(rules="required" name="confirmation" v-slot="{ errors }" slim)
+                      b-field(label="Confirme a senha" :type="{'is-danger': errors.length}" :message="errors[0]")
+                        b-input(type="password" v-model="user.passwordConfirmation")
 
-                  .columns
-                    .column
-                    .column
-                    .column.level
-                      .level-right
-                        b-button.is-medium(type="is-success" @click="register") Registar-se
+                    .columns
+                      .column
+                        b-button.is-medium.is-pulled-left(type="is-default" @click="$router.push('/user/login')") Voltar
+                      .column
+                          b-button.is-medium.is-pulled-right(type="is-success" @click="register" :disabled="invalid") Registar-se
 
 </template>
 
