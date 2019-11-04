@@ -1,15 +1,13 @@
 module.exports = {
-  name: 'name',
-  email:  {
-    type: 'email',
+  name: {
+    type: 'name',
     primary: true,
     unique: 'true',
   },
-  password: 'string',
   interest_in: {
     type: 'relationship',
-    target: 'Interest',
+    target: 'User',
     relationship: 'INTEREST_IN',
-    direction: 'out'
+    direction: 'in'
   }
 }

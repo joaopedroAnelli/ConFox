@@ -37,6 +37,7 @@
 
 <script>
   export default {
+    auth: false,
     name: "register",
     layout: 'blank',
 
@@ -60,8 +61,16 @@
               title: 'Muito bem!',
               message: 'Usuário cadastrado com sucesso!',
               type: 'is-success',
-              confirmText: 'Fazer login',
-              onConfirm: () => this.$router.push('/user/login')
+              confirmText: 'Continuar',
+              onConfirm: () => {
+                this.$nuxt.$loading.start();
+                this.$auth.loginWith('local', {
+                  data: this.user
+                }).then(r => {
+                  this.$nuxt.$loading.finish();
+                  this.$router.push('/interests')
+                })
+              }
             })
           })
       }

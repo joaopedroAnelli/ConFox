@@ -1,5 +1,6 @@
 <template lang="pug">
   .interests-root
+    h1 {{userInterests}}
     .columns.is-centered
       .column.is-two-thirds-tablet.is-half-desktop
         .hero
@@ -11,7 +12,7 @@
           .hero-body
             .container
               vue-multiselect(
-                v-model="interest",
+                v-model="userInterests",
                 :options="interests",
                 :multiple="true",
                 :close-on-select="false",
@@ -25,42 +26,46 @@
           .hero
             .hero-body
               .container.has-text-right
-                b-button.is-medium(type="is-success") Próximo
+                b-button.is-medium(type="is-success" @click="attachInterests") Próximo
 
 
 </template>
 
 <script>
-    export default {
-        name: "interests",
-        layout: 'blank',
-        mounted() {
-            document
-                .getElementsByTagName('body').item(0)
-                .classList
-                .remove('has-navbar-fixed-top')
-        },
+  export default {
+    name: "interests",
+    layout: 'blank',
 
-        data() {
-            return {
-                interest: null,
-                interests: [
-                    {
-                        'id': 1,
-                        'name': 'Futebol',
-                    },
-                    {
-                        'id': 2,
-                        'name': 'Java',
-                    },
-                    {
-                        'id': 3,
-                        'name': 'Namorada',
-                    },
-                ]
-            }
-        }
+    async asyncData({$axios}) {
+      return {
+        interests: await $axios.$get('/api/interests'),
+        userInterests: await $axios.$get('/api/user/interests')
+      }
+
+    },
+    mounted() {
+      document
+        .getElementsByTagName('body').item(0)
+        .classList
+        .remove('has-navbar-fixed-top')
+    },
+
+
+    methods: {
+      attachInterests() {
+        this.$nuxt.$loading.start()
+        this.$axios.post('/api/interests', {
+          interests: this.userInterests
+        })
+          .then(r => {
+            this.$router.push('/groups');
+            this.$nuxt.$loading.finish();
+          }, err => {
+            console.log(err)
+          })
+      }
     }
+  }
 </script>
 
 <style lang="scss" scoped>

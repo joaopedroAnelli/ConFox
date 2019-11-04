@@ -15,6 +15,8 @@
 
 const Route = use('Route');
 
+
+//User
 Route
   .post('/api/user', 'UserController.create');
 
@@ -23,6 +25,20 @@ Route
 
 Route
   .get('/api/users/:id', 'UserController.show')
+  .middleware('auth');
+
+
+//Interests
+Route
+  .get('/api/interests', 'InterestController.list')
+  .middleware('auth');
+
+Route
+  .get('/api/user/interests', 'InterestController.interestOfUser')
+  .middleware('auth');
+
+Route
+  .post('/api/interests', 'InterestController.attachToUser')
   .middleware('auth');
 
 Route.any('*', 'NuxtController.render');

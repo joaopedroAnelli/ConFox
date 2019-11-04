@@ -24,11 +24,13 @@
     "@adonisjs/redis": "^2.0.7",
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
+    "@nuxtjs/auth": "^4.8.4",
     "connect-redis": "^4.0.3",
     "cross-env": "^5.2.0",
     "express-http-proxy": "^1.6.0",
     "express-session": "^1.17.0",
     "global": "^4.4.0",
+    "jsonwebtoken": "^8.5.1",
     "neo4j-driver": "^1.7.6",
     "neode": "^0.3.6",
     "nuxt": "^2.0.0",
@@ -38,7 +40,7 @@
     "vue2-animate": "^2.1.2"
   },
   "devDependencies": {
-    "@nuxtjs/axios": "^5.6.0",
+    "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-jest": "^24.1.0",

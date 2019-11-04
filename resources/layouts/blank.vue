@@ -3,9 +3,3 @@
   nuxt
 
 </template>
-
-<script>
-    export default {
-        middleware: 'logged-in'
-    }
-</script>

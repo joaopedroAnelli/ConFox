@@ -16,7 +16,7 @@
                   b-field(label="E-mail")
                     b-input(v-model="user.email")
                   b-field(label="Senha")
-                    b-input(type="password" v-model="user.password")
+                    b-input(type="password" v-model="user.password" password-review)
 
                   .columns
                     .column
@@ -32,7 +32,7 @@
   export default {
     name: "login",
     layout: 'blank',
-
+    auth: 'guest',
     data() {
       return {
         user: {
@@ -46,20 +46,21 @@
       login() {
         this.$nuxt.$loading.start();
 
-        this.$axios
-          .post('/api/user/auth', this.user)
-          .then(r => {
-            this.$nuxt.$loading.finish();
-            // this.$router.push('/groups')
-          }, err => {
-            this.$nuxt.$loading.finish();
-            this.$buefy.dialog.alert({
-              title: 'Ops!',
-              message: 'Usuário inválido',
-              type: 'is-danger',
-              confirmText: 'Tentar novamente',
-            })
+        this.$auth.loginWith('local', {
+          data: this.user
+        }).then(r => {
+          this.$nuxt.$loading.finish();
+          this.$router.push('/groups')
+
+        }, err => {
+          this.$nuxt.$loading.finish();
+          this.$buefy.dialog.alert({
+            title: 'Ops!',
+            message: 'Usuário inválido',
+            type: 'is-danger',
+            confirmText: 'Tentar novamente',
           })
+        })
           .catch(err => {
             this.$nuxt.$loading.finish();
             console.log(err)

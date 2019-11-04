@@ -15,7 +15,7 @@
     template(slot="end")
       b-navbar-item
         .buttons
-          a.button.is-light Sair
+          b-button(type="is-light" @click="$auth.logout()") Sair
 
 </template>
 

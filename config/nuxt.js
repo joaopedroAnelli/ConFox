@@ -52,8 +52,32 @@ module.exports = {
     '@nuxtjs/axios',
 
 
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+
+    '@nuxtjs/auth'
   ],
+
+
+  auth: {
+    redirect: {
+      login: '/user/login',
+      home: '/groups'
+    },
+
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/api/user/auth', method: 'POST', propertyName: 'token'},
+          logout: false,
+          user: false,
+        },
+      }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
+  },
   /*
   ** Build configuration
   */

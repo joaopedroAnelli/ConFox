@@ -25,6 +25,8 @@ const providers = [
   path.join(__dirname, '..', 'providers', 'NuxtProvider'),
   path.join(__dirname, '..', 'providers', 'Neo4jProvider'),
   path.join(__dirname, '..', 'providers', 'NeodeProvider'),
+  path.join(__dirname, '..', 'providers', 'JwtManager/Provider'),
+  path.join(__dirname, '..', 'providers', 'AuthServiceProvider'),
 ]
 
 /*

@@ -91,8 +91,8 @@ module.exports = {
   |
   */
   redis: {
-    port: 6379, // Redis port
-    host: "127.0.0.1", // Redis host
-    db: 0
+    port: Env.get('REDIS_PORT'), // Redis port
+    host: Env.get('REDIS_HOST'), // Redis host
+    db: Env.get('REDIS_DB')
   }
 }

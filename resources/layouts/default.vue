@@ -7,16 +7,6 @@
 
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      middleware: 'auth'
-    }
-  }
-}
-</script>
-
 <style lang="stylus" scoped>
   .default-root
     min-height calc(100vh - 3.25rem)

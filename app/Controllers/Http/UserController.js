@@ -1,6 +1,7 @@
 'use strict';
 const instance = use('Neode');
 const Hash = use('Hash');
+const JwtManager = use('JwtManager');
 
 class UserController {
   async create({request, response}) {
@@ -26,7 +27,7 @@ class UserController {
 
 
   async login({ request, response }) {
-    const user = await instance
+    let user = await instance
       .model('User')
       .find(request.input('email'))
 
@@ -34,14 +35,12 @@ class UserController {
       user
       && await Hash.verify(request.input('password'), user.get('password'))
     ) {
-      let userToReturn = {
+      user = {
         name: user.get('name'),
         email: user.get('email')
       };
-
-      //TODO implement JWT
-      userToReturn.token = 'aioduoisttio';
-      return userToReturn
+      user.token = JwtManager.generate(user);
+      return user
     } else {
       return response
         .status(400)
