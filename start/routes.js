@@ -41,4 +41,16 @@ Route
   .post('/api/interests', 'InterestController.attachToUser')
   .middleware('auth');
 
+
+
+//schedules
+Route
+  .get('/api/schedules', 'ScheduleController.list')
+  .middleware('auth');
+
+Route
+  .post('/api/schedules', 'ScheduleController.attachToUser')
+  .middleware('auth');
+
+
 Route.any('*', 'NuxtController.render');

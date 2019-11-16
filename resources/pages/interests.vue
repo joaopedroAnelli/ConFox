@@ -1,6 +1,5 @@
 <template lang="pug">
   .interests-root
-    h1 {{userInterests}}
     .columns.is-centered
       .column.is-two-thirds-tablet.is-half-desktop
         .hero

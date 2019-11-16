@@ -35,6 +35,7 @@ module.exports = {
   plugins: [
     '~/plugins/global-components',
     '~/plugins/vee-validate',
+    '~/plugins/format',
   ],
   /*
   ** Nuxt.js dev-modules
