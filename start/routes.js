@@ -53,4 +53,22 @@ Route
   .middleware('auth');
 
 
+//Groups
+Route
+  .get('/api/recomended_groups', 'GroupController.recomendedGroups')
+  .middleware('auth');
+
+Route
+  .get('/api/groups', 'GroupController.list')
+  .middleware('auth');
+
+Route
+  .get('/api/groups/:id', 'GroupController.show')
+  .middleware('auth');
+
+Route
+  .post('/api/schedules', 'ScheduleController.attachToUser')
+  .middleware('auth');
+
+
 Route.any('*', 'NuxtController.render');

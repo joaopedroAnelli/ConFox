@@ -22,7 +22,7 @@
           form(@submit.prevent="saveSchedule")
             div.modal-card(style="width: auto")
               header.modal-card-head
-                p.modal-card-title Novo Agendamento {{schedule}}
+                p.modal-card-title Novo Agendamento
               section.modal-card-body
                 b-field(label="Título")
                   b-input(

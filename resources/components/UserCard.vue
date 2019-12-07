@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card.group-card(@click="$router.push(`/groups/${group.id.low}`)")
+  .card.user-card(@click="$router.push(`/chats/${user.id.low}`)")
     .card-content
       article.media
         //figure.media-left
@@ -8,19 +8,18 @@
         .media-content
           .content
             p
-              strong(style="margin-right: 8px") {{ group.name }}
-              small(v-if="group.weight") {{group.weight.low}} amigos em comum
+              strong(style="margin-right: 8px") {{ user.name }}
               br
-              span {{group.description}}
+              span {{user.email}}
         .media-right
 </template>
 
 <script>
   export default {
-    name: "GroupCard",
+    name: "UserCard",
 
     props: {
-      group: {
+      user: {
         type: Object,
         required: true
       }
@@ -30,7 +29,7 @@
 
 <style scoped lang="scss">
 
-  .group-card {
+  .user-card {
     cursor: pointer;
   }
 
