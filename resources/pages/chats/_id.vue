@@ -24,8 +24,11 @@
         .writter.has-background-light.has-text-dark.columns.is-marginless
           .column
           .column.is-four-fifths
-            input.is-fullwidth
+            b-field
+              b-input(placeholder="Digite sua mensagem aqui" rounded)
           .column
+            .container
+              b-button(type="is-success" icon-left="send")
 
 </template>
 
