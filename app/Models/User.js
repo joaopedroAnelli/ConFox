@@ -11,5 +11,11 @@ module.exports = {
     target: 'Interest',
     relationship: 'INTEREST_IN',
     direction: 'out'
+  },
+  belongs_to: {
+    type: 'relationship',
+    target: 'Group',
+    relationship: 'BELONGS_TO',
+    direction: 'out'
   }
 }

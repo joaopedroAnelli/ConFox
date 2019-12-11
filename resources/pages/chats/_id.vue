@@ -1,5 +1,44 @@
 <template lang="pug">
   .root
+    b-modal(
+      :active.sync="openScheduleModal"
+      has-modal-card
+      trap-focus
+      aria-role="dialog"
+      aria-modal
+    )
+      form(@submit.prevent="saveSchedule")
+        div.modal-card(style="width: auto")
+          header.modal-card-head
+            p.modal-card-title Novo Agendamento
+          section.modal-card-body
+            b-field(label="Título")
+              b-input(
+                v-model="schedule.title"
+                placeholder="Título do agendamento"
+                required
+              )
+
+            b-field(label="Quando?")
+              b-datepicker(
+                v-model="schedule.date"
+                :show-week-number="false"
+                placeholder="Clique para escolher..."
+                inline
+              )
+
+            b-field(label="Que horas?")
+              b-clockpicker(
+                rounded
+                v-model="schedule.time"
+                placeholder="Clique para escolher..."
+                hour-format="24"
+                inline
+              )
+
+          footer.modal-card-foot
+            button.button( type="button" @click="openScheduleModal = false") Fechar
+            button.button.is-success Cadastrar
     .hero.user-header
       .hero-body
         .container
@@ -8,7 +47,7 @@
               h1.title {{user.name}}
               p {{user.email}}
             .column
-              button.button.is-success.is-pulled-right Agendar
+              button.button.is-success.is-pulled-right(@click="openScheduleModal = true") Agendar
     hr
     .section
       .container.chat
@@ -37,6 +76,8 @@
     name: "_id",
     async asyncData({$axios, params}) {
       return {
+        openScheduleModal: false,
+        schedule: {},
         // user: await $axios.$get('/api/user/' + params.id) || {}
         user: {
           id: 1,

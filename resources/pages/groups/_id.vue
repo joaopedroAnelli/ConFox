@@ -11,32 +11,41 @@
 
 <script>
   export default {
-    name: "_id",
     async asyncData({$axios, params}) {
       return {
-        // group: await $axios.$get('/api/group/' + params.id) || {}
-        group: {
-          id: 1,
-          name: 'Amantes de piano',
-          users: [
-            {
-              id: {
-                low: 1
-              },
-              name: 'João Fernando',
-              email: 'fernando@gmail.com'
-            },
-            {
-              id: {
-                low: 2
-              },
-              name: 'Roberto',
-              email: 'fernando@gmail.com'
-            },
-          ]
-        }
+
+        // group: {
+        //   id: 1,
+        //   name: 'Amantes de piano',
+        //   users: [
+        //     {
+        //       id: {
+        //         low: 1
+        //       },
+        //       name: 'João Fernando',
+        //       email: 'fernando@gmail.com'
+        //     },
+        //     {
+        //       id: {
+        //         low: 2
+        //       },
+        //       name: 'Roberto',
+        //       email: 'fernando@gmail.com'
+        //     },
+        //   ]
+        // }
       }
     },
+
+    data() {
+      return {
+        group: {}
+      }
+    },
+
+    async mounted() {
+      this.group = await this.$axios.$get('/api/groups/' + this.$route.params.id) || {}
+    }
   }
 </script>
 
