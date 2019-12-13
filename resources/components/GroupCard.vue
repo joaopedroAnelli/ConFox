@@ -9,7 +9,7 @@
           .content
             p
               strong(style="margin-right: 8px") {{ group.name }}
-              small(v-if="group.weight") {{group.weight.low}} amigos em comum
+              //small(v-if="group.weight") {{group.weight.low}} amigos em comum
               br
               span {{group.description}}
         .media-right
