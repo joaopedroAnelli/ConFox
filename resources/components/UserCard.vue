@@ -8,9 +8,9 @@
         .media-content
           .content
             p
-              strong(style="margin-right: 8px") {{ user.name }}
+              strong(style="margin-right: 8px") {{ user['u.name'] }}
               br
-              span {{user.email}}
+              span {{user['u.email']}}
         .media-right
 </template>
 

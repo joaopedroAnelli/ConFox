@@ -47,71 +47,75 @@
               h1.title {{user.name}}
               p {{user.email}}
             .column
-              button.button.is-success.is-pulled-right(@click="openScheduleModal = true") Agendar
+              button.button.is-success.is-pulled-right(@click="$router.push('/schedules')") Agendar
     hr
     .section
       .container.chat
         .balloon-wrapper
-          .balloon-left.has-background-primary.has-text-white
+          //.balloon-left.has-background-primary.has-text-white
             p Olá
             p.is-pulled-right.is-size-7.has-text-light 20:00
 
-        .balloon-wrapper
+        .balloon-wrapper(v-for="message in chat.messages")
           .balloon-right.is-pulled-right.has-background-light.has-text-dark
-            p Olá, tudo bem?
-            p.is-pulled-right.is-size-7.has-text-dark 20:05
+            p {{message.text}}
+            p.is-pulled-right.is-size-7.has-text-dark {{message.created_at}}
         .writter.has-background-light.has-text-dark.columns.is-marginless
           .column
           .column.is-four-fifths
             b-field
-              b-input(placeholder="Digite sua mensagem aqui" rounded)
+              b-input(placeholder="Digite sua mensagem aqui" rounded v-model="writter.text")
           .column
             .container
-              b-button(type="is-success" icon-left="send")
+              b-button(type="is-success" icon-left="send" @click="addMessage")
 
 </template>
 
 <script>
+  import moment from 'moment';
   export default {
     name: "_id",
     async asyncData({$axios, params}) {
       return {
         openScheduleModal: false,
         schedule: {},
-        // user: await $axios.$get('/api/user/' + params.id) || {}
-        user: {
-          id: 1,
-          name: 'Carol',
-          email: 'carol@gail.com'
+        writter: {
+          text: ''
         },
+        // user: await $axios.$get('/api/user/' + params.id) || {}
+        user: await $axios.$get('/api/users/' + params.id),
 
         chat: {
           messages: [
-            {
-              id: {
-                low: 1
-              },
-              myself: true,
-              text: 'Olá',
-              created_at: '2019-12-07 20:00:00'
-            },
-            {
-              id: {
-                low: 1
-              },
-              myself: false,
-              user: {
-                id: {
-                  low: 2
-                }
-              },
-              text: 'Olá, tudo bem?',
-              created_at: '2019-12-07 20:05:00'
-            }
+
           ]
         }
       }
     },
+
+    methods: {
+      addMessage() {
+        this.chat.messages.push({
+          text: this.writter.text,
+          created_at: moment().format('HH:mm')
+        })
+        this.writter.text = ''
+      },
+      async saveSchedule() {
+        this.data.push({
+          ...this.schedule,
+          datetime: `${this.$formatDatetime(this.schedule.date, 'DD/MM/YYYY')} às ${this.$formatDatetime(this.schedule.time, 'HH[h]mm')}`
+        })
+
+        this.openScheduleModal = false
+
+        this.$buefy.dialog.alert({
+          title: 'Muito bem!',
+          message: 'Agendamento feito com sucesso!',
+          type: 'is-success',
+        })
+      }
+    }
   }
 </script>
 

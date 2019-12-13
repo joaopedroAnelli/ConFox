@@ -49,6 +49,15 @@ class UserController {
         });
     }
   }
+
+  async show({params, response}) {
+    const user = await instance.findById('User', params.id)
+
+    return response.json({
+      name: user.get('name'),
+      email: user.get('email')
+    })
+  }
 }
 
 module.exports = UserController;

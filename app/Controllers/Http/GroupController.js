@@ -36,10 +36,26 @@ class GroupController {
   }
 
 
-  async show({params}) {
+  async show({params, response}) {
     const group = await instance.findById('Group', params.id)
+    let usersToObject = []
+    let users = (
+      await instance.cypher(
+        `match (u:User)-[:BELONGS_TO]->(g:Group) where id(g) = ${params.id} return id(u) as id, u.name, u.email`,
+        {
+        }
+      )
+    ).records;
 
-    return group.properties.name;
+    usersToObject = users.map(record => {
+      return record.toObject()
+    })
+
+    return response.json({
+      name: group.get('name'),
+      description: group.get('description'),
+      users: usersToObject
+    });
   }
 }
 

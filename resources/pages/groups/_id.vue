@@ -4,7 +4,10 @@
       .hero-body
         .container
           h1.title {{group.name}}
+          h2.subtitle {{group.description}}
 
+          hr
+          h1.title Usuários
           ul
             li: user-card(v-for="user in group.users" :key="user.id.low" :user="user")
 </template>

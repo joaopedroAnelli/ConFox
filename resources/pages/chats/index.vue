@@ -4,7 +4,7 @@
       .container
         h1.title Chats
 
-        chat-card(v-for="x in 8" :key="x")
+        user-card(v-for="x in 8" :key="x" :user="{name: ''}")
 </template>
 
 <script>
